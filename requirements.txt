@@ -10,3 +10,4 @@ tqdm
 pinecone-plugin-assistant
 pypdf
 huggingface_hub
+sentence-transformers
