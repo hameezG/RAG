@@ -1,0 +1,7 @@
+streamlit
+langchain==0.3.26
+langchain-openai==0.3.25
+langchain-pinecone==0.2.8
+langchain-huggingface==0.1.2
+pinecone-client==5.0.1
+tqdm
