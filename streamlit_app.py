@@ -28,7 +28,7 @@ vectorstore = PineconeVectorStore(
 
 # Initialize LLM (Hugging Face model)
 llm = HuggingFaceEndpoint(
-    endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1",
+    endpoint_url="https://api-inference.huggingface.co/models/mixtralai/Mixtral-8x7B-Instruct-v0.1",
     huggingfacehub_api_token=huggingface_api_key,
     temperature=0.0,
     max_new_tokens=512
