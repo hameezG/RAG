@@ -1,16 +1,14 @@
 streamlit==1.33.0
-
-# LangChain stack
 langchain==0.3.26
 langchain-openai==0.3.25
 langchain-pinecone==0.2.8
 langchain-huggingface==0.1.2
 
-# Vector DB + models
-pinecone-client==3.0.0
-sentence-transformers==2.6.1
-transformers==4.41.1
-torch==2.2.2
+# Use compatible torch & sentence-transformers
+torch==2.1.2
+sentence-transformers==2.5.1
+transformers==4.40.1
+tqdm==4.66.2
 
-# Utils
-tqdm
+# Let pip resolve pinecone client automatically
+pinecone-client>=2.2,<4.0
