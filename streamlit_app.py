@@ -1,13 +1,13 @@
 import streamlit as st
 from pinecone import Pinecone
-from langchain_openai import ChatOpenAI
+from langchain_huggingface import HuggingFaceEndpoint
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import RetrievalQA
 
 # Access API keys from Streamlit secrets
 pinecone_api_key = st.secrets["PINECONE_API_KEY"]
-openai_api_key = st.secrets["OPENAI_API_KEY"]
+huggingface_api_key = st.secrets["HUGGINGFACE_API_KEY"]
 
 # Initialize Pinecone client
 pc = Pinecone(api_key=pinecone_api_key)
@@ -15,7 +15,7 @@ pc = Pinecone(api_key=pinecone_api_key)
 # Index name (matches your existing Pinecone index)
 index_name = "gcse-bge-index"
 
-# Load embedding model
+# Load embedding model (same as used in Colab for vectorization)
 embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-base-en")
 
 # Connect to existing Pinecone vector store
@@ -26,11 +26,12 @@ vectorstore = PineconeVectorStore(
     namespace=""
 )
 
-# Initialize LLM
-llm = ChatOpenAI(
-    model_name="gpt-3.5-turbo",
+# Initialize LLM (Hugging Face model)
+llm = HuggingFaceEndpoint(
+    endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1",
+    huggingfacehub_api_token=huggingface_api_key,
     temperature=0.0,
-    openai_api_key=openai_api_key
+    max_new_tokens=512
 )
 
 # Set up RetrievalQA chain
